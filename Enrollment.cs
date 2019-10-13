@@ -1,38 +1,38 @@
 using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
-=======
 using System.ComponentModel.DataAnnotations;
->>>>>>>
 using System.Linq;
 using System.Web;
 
-namespace EnrollmentApplication.Models
+namespace MVCEnrollmentApplication.Models
 {
     public class Enrollment
     {
-        public virtual string EnrollmentID { get; set; }
-        public virtual string StudentID { get; set; }
-        public virtual string CourseID { get; set; }
-<<<<<<< HEAD
-=======
-        [Required(ErrorMessage = "Those aren't grades")]
-        [RegularExpression(@"[A-Fa-f]")]
->>>>>>> 284b57a00fe9ef6bf70f90b4ced01f9244f16b48
-        public virtual char Grade { get; set; }
-        public virtual object Student { get; set; }
-        public virtual object Course { get; set; }
-        public virtual Boolean IsActive { get; set; }
-<<<<<<< HEAD
+        [Display(Name = "Enrollment ID")]
+        public virtual int EnrollmentID { get; set; }
+        public virtual int StudentID { get; set; }
+        public virtual int CourseID { get; set; }
+
+        [Required(ErrorMessage = "{0} is required")]
+        [RegularExpression("[A-DFa-df]", ErrorMessage = "Only use letter grades A through F")]
+        public virtual string Grade { get; set; }
+        public virtual Student Student { get; set; }
+        public virtual Course Course { get; set; }
+        public virtual bool IsActive { get; set; }
+
+        [Required(ErrorMessage = "Campus is required")]
+        [Display(Name = "Assigned Campus")]
         public virtual string AssignedCampus { get; set; }
-=======
-        [Required]
-        public virtual string AssignedCampus { get; set; }
-        [Required]
-        [Range(2018, 2147483647)]
->>>>>>> 
+
+        [Required(ErrorMessage = "Semester is required")]
+        [Display(Name = "Enrolled in Semester")]
         public virtual string EnrollmentSemester { get; set; }
+
+        [Required(ErrorMessage = "{0} is required")]
+        [Range(2018, Double.MaxValue, ErrorMessage = "Cannot be earlier than 2018")]
         public virtual int EnrollmentYear { get; set; }
 
+        [InvalidChars("!@#$%", ErrorMessage = "The following charaters are not allowed: !, @, #, $, %." )]
+        public virtual string Notes { get; set; }
     }
 }
